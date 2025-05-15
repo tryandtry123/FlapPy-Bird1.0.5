@@ -28,7 +28,6 @@ class Score(Entity):
         增加分数
         """
         self.score += 1  # 分数加1
-        self.config.sounds.point.play()  # 播放得分音效
 
     @property
     def rect(self) -> pygame.Rect:

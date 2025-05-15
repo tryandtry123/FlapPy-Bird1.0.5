@@ -426,8 +426,9 @@ class Flappy:
             if self.player.collide(powerup):
                 # 激活道具在管理器中的效果
                 self.powerup_manager.activate_effect(powerup.power_type)
-                # 播放得分声音
-                self.config.sounds.point.play()
+                # 播放得分声音（Boss模式下静音）
+                if self.game_mode != GameMode.BOSS:
+                    self.config.sounds.point.play()
                 # 添加到要删除的列表
                 powerups_to_remove.append(powerup)
         
@@ -586,8 +587,8 @@ class Flappy:
                 pipe.passed = True
                 # 增加分数
                 self.score.add()
-                # 播放得分声音
-                self.config.sounds.point.play()
+                if self.game_mode != GameMode.BOSS:
+                    self.config.sounds.point.play()
 
     async def play(self):
         """
